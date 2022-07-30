@@ -7,6 +7,8 @@
     "dev": "nodemon index.ts",
     "migrate:up": "knex migrate:up",
     "migrate:down": "knex migrate:down",
+    "migrate:latest": "knex migrate:latest",
+    "seed": "knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

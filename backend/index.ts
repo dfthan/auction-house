@@ -6,7 +6,7 @@ const { Model } = require('objection')
 const knex = require('knex')
 
 Model.knex(knex(knexfile.development))
-
+console.log(knexfile.development.migrations)
 const Product = require('./models/Product')
 
 app.get("/", async (req, res) => {
