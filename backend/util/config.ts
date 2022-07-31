@@ -1,7 +1,9 @@
-require('dotenv').config()
+require("dotenv").config();
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3001;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 module.exports = {
-    PORT,
-}
+	PORT,
+	JWT_SECRET,
+};
