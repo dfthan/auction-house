@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 const Product = require("../models/Product");
+const tokenCheck = require("../util/middleware");
 
 router.get("/", async (req, res) => {
 	const item = await Product.query();
@@ -16,7 +17,7 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
-router.post("/", async (req, res) => {
+router.post("/", tokenCheck, async (req, res) => {
 	try {
 		const item = await Product.query().insert(req.body);
 		res.status(201).json(item);
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", tokenCheck, async (req, res) => {
 	try {
 		const item = await Product.query()
 			.findById(req.params.id)
@@ -36,7 +37,7 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", tokenCheck, async (req, res) => {
 	try {
 		const item = await Product.query().deleteById(req.params.id);
 		res.status(202).send(`Item id ${req.params.id} deleted successfully`);
