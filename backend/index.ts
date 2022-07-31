@@ -5,10 +5,11 @@ const knexfile = require("./knexfile");
 const { Model } = require("objection");
 const knex = require("knex");
 Model.knex(knex(knexfile.development));
-const productsRouter = require("./routes/products");
 app.use(express.json());
 
-app.use("/api/products", productsRouter);
+app.use("/api/products", require("./routes/products"));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/register", require("./routes/register"));
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port http://localhost:${PORT}`);
