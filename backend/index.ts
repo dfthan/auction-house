@@ -1,20 +1,15 @@
-import express from 'express'
-const { PORT } = require('./util/config')
-const app = express()
-const knexfile = require('./knexfile')
-const { Model } = require('objection')
-const knex = require('knex')
+import express from "express";
+const { PORT } = require("./util/config");
+const app = express();
+const knexfile = require("./knexfile");
+const { Model } = require("objection");
+const knex = require("knex");
+Model.knex(knex(knexfile.development));
+const productsRouter = require("./routes/products");
+app.use(express.json());
 
-Model.knex(knex(knexfile.development))
-console.log(knexfile.development.migrations)
-const Product = require('./models/Product')
-
-app.get("/", async (req, res) => {
-    const item = await Product.query()
-    res.json(item)
-
-})
+app.use("/api/products", productsRouter);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port localhost:${PORT}`)
-})
+	console.log(`Server is running on port http://localhost:${PORT}`);
+});
