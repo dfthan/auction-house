@@ -7,4 +7,13 @@ router.get("/", async (_req, res) => {
 	res.json(user);
 });
 
+router.delete("/:id", async (req, res) => {
+	try {
+		await User.query().deleteById(req.params.id);
+		res.status(202).send(`User id ${req.params.id} deleted successfully`);
+	} catch (err) {
+		res.status(400).json({ err });
+	}
+});
+
 module.exports = router;

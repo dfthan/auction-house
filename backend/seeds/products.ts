@@ -12,7 +12,7 @@ export async function seed(knex: Knex): Promise<void> {
 			description: "Paras testaaja mitä tällä planeetalla on",
 			image: "https://picsum.photos/500",
 			price: 19.2,
-			user_id: 1,
+			user_id: 9999999,
 		},
 		{
 			id: 53409850,
@@ -20,7 +20,7 @@ export async function seed(knex: Knex): Promise<void> {
 			description: "Paras testaaja mitä tällä planeetalla on",
 			image: "https://picsum.photos/500",
 			price: 19.2,
-			user_id: 1,
+			user_id: 9999999,
 		},
 		{
 			id: 23094582,
@@ -28,7 +28,7 @@ export async function seed(knex: Knex): Promise<void> {
 			description: "Paras testaaja mitä tällä planeetalla on",
 			image: "https://picsum.photos/500",
 			price: 19.2,
-			user_id: 1,
+			user_id: 9999999,
 		},
 		{
 			id: 99999999,
@@ -36,7 +36,7 @@ export async function seed(knex: Knex): Promise<void> {
 			description: "Parasta maailmassa",
 			image: "https://public.keskofiles.com/f/k-ruoka/product/6410405072863?w=480&h=480&fit=max&auto=format&fm=jpg&cs=srgb",
 			price: 2,
-			user_id: 1,
+			user_id: 9999999,
 		},
 	]);
 }
