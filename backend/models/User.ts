@@ -22,12 +22,12 @@ class User extends Model {
 		};
 	}
 
-	/* TODO
 	static relationMappings() {
+		const Product = require("./Product");
 		return {
 			products: {
 				relation: Model.HasManyRelation,
-				modelClass: __dirname + "/Product",
+				modelClass: Product,
 				join: {
 					from: "users.id",
 					to: "products.user_id",
@@ -35,7 +35,6 @@ class User extends Model {
 			},
 		};
 	}
-	*/
 }
 
 module.exports = User;

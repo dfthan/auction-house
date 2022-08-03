@@ -24,12 +24,13 @@ class Product extends Model {
 		};
 	}
 
-	/* TODO
+	/* product -> user, uncomment if needed
 	static relationMappings() {
+		const User = require("./User");
 		return {
 			owner: {
 				relation: Model.BelongsToOneRelation,
-				modelClass: __dirname + "/User",
+				modelClass: User,
 				join: {
 					from: "products.user_id",
 					to: "users.id",

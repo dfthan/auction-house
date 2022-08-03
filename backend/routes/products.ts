@@ -22,6 +22,7 @@ router.post("/", tokenCheck, async (req, res) => {
 		//console.log(res.locals.userId); <-- user id from token check
 		const item = await Product.query().insert({
 			...req.body,
+			user_id: res.locals.userId,
 		});
 		res.status(201).json(item);
 	} catch (err) {
@@ -40,10 +41,18 @@ router.put("/:id", tokenCheck, async (req, res) => {
 
 router.delete("/:id", tokenCheck, async (req, res) => {
 	try {
+		const product = await Product.query().findById(req.params.id);
+		if (!product) {
+			return res.status(404).json({ message: "Product not found" });
+		}
+
+		if (product.user_id !== res.locals.userId) {
+			return res.status(401).json({ message: "Unauthorized" });
+		}
 		await Product.query().deleteById(req.params.id);
 		res.status(202).send(`Item id ${req.params.id} deleted successfully`);
 	} catch (err) {
-		res.status(400).json({ err });
+		res.status(400).json("Something went wrong: " + err);
 	}
 });
 
