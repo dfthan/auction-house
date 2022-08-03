@@ -9,7 +9,8 @@ const checkToken = (req: Request, res: Response, next: NextFunction) => {
 	}
 	try {
 		const token = tokenWithBearer.split(" ")[1];
-		const decoded = jwt.verify(token, JWT_SECRET);
+		const userData = jwt.verify(token, JWT_SECRET);
+		res.locals.userId = userData.id;
 		next();
 	} catch (err) {
 		return res.status(401).json({ message: "Not authorized" });

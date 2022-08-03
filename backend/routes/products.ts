@@ -3,7 +3,7 @@ const router = express.Router();
 const Product = require("../models/Product");
 const tokenCheck = require("../util/middleware");
 
-router.get("/", async (req, res) => {
+router.get("/", async (_req, res) => {
 	const item = await Product.query();
 	res.json(item);
 });
@@ -19,7 +19,10 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", tokenCheck, async (req, res) => {
 	try {
-		const item = await Product.query().insert(req.body);
+		//console.log(res.locals.userId); <-- user id from token check
+		const item = await Product.query().insert({
+			...req.body,
+		});
 		res.status(201).json(item);
 	} catch (err) {
 		res.status(400).json({ err });
@@ -28,9 +31,7 @@ router.post("/", tokenCheck, async (req, res) => {
 
 router.put("/:id", tokenCheck, async (req, res) => {
 	try {
-		const item = await Product.query()
-			.findById(req.params.id)
-			.patch(req.body);
+		await Product.query().findById(req.params.id).patch(req.body);
 		res.status(202).send(`Item id ${req.params.id} updated successfully`);
 	} catch (err) {
 		res.status(400).json({ err });
@@ -39,7 +40,7 @@ router.put("/:id", tokenCheck, async (req, res) => {
 
 router.delete("/:id", tokenCheck, async (req, res) => {
 	try {
-		const item = await Product.query().deleteById(req.params.id);
+		await Product.query().deleteById(req.params.id);
 		res.status(202).send(`Item id ${req.params.id} deleted successfully`);
 	} catch (err) {
 		res.status(400).json({ err });

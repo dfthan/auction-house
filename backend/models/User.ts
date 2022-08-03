@@ -21,6 +21,21 @@ class User extends Model {
 			},
 		};
 	}
+
+	/* TODO
+	static relationMappings() {
+		return {
+			products: {
+				relation: Model.HasManyRelation,
+				modelClass: __dirname + "/Product",
+				join: {
+					from: "users.id",
+					to: "products.user_id",
+				},
+			},
+		};
+	}
+	*/
 }
 
 module.exports = User;

@@ -10,7 +10,6 @@ router.post("/", async (req, res) => {
 		const user = await User.query().findOne({
 			email: req.body.email,
 		});
-
 		const correctPassword = await bcrypt.compare(
 			req.body.password,
 			user.password
@@ -20,7 +19,7 @@ router.post("/", async (req, res) => {
 			return res.status(400).json("Invalid email or password");
 		}
 		if (user.token) {
-			return res.send(user.token);
+			return res.json({ token: user.token });
 		}
 
 		const tokenUser = {
@@ -32,7 +31,7 @@ router.post("/", async (req, res) => {
 		});
 		user.token = token;
 		await User.query().findById(user.id).patch({ token: token });
-		res.json(user);
+		res.json({ token });
 	} catch (err) {
 		res.status(400).json("Something went wrong: " + err);
 	}

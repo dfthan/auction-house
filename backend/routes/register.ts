@@ -14,12 +14,12 @@ router.post("/", async (req, res) => {
 
 		const encryptPassword = await bcrypt.hash(req.body.password, 10);
 
-		const user = await User.query().insert({
+		await User.query().insert({
 			username: req.body.username,
 			email: req.body.email.toLowerCase(),
 			password: encryptPassword,
 		});
-		res.json(user);
+		res.send("New account made successfully, please login");
 	} catch (err) {
 		res.status(500).json(err);
 	}
