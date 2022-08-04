@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
 import ProductCard from "./components/ProductCard";
 import { Product } from "./types";
 
@@ -17,10 +16,9 @@ const App = () => {
 
 	return (
 		<div>
-			<Navbar />
 			<div>
 				<div className="wrapper">
-					<h1>Front page</h1>
+					<h1>Front page (for now) </h1>
 					<ProductCard product={products} />
 				</div>
 			</div>

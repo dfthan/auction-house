@@ -6,3 +6,4 @@
 | 1.8  | 5           | auth with jwt, lots of routes, auth middleware           |
 | 2.8  | 2           | tried using foreign key n small tweaks all around        |
 | 3.8  | 1           | got foreign key working, made few routes, relation query |
+| 4.8  | 3           | started struggling on frontend css                       |
