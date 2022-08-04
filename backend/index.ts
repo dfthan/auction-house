@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 const { PORT } = require("./util/config");
 const app = express();
@@ -6,6 +7,7 @@ const { Model } = require("objection");
 const knex = require("knex");
 Model.knex(knex(knexfile.development));
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/products", require("./routes/products"));
 app.use("/api/users", require("./routes/users"));

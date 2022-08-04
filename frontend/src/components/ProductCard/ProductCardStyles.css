@@ -1,0 +1,31 @@
+.productWrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+.productContainer {
+	align-items: center;
+	text-align: center;
+	width: 20vw;
+	padding-top: 1rem;
+	background-color: rgba(99, 99, 99, 0.281);
+	margin-bottom: 1rem;
+	margin-right: 1rem;
+	border-radius: 1.5rem;
+}
+
+.productContainer h1 {
+	margin: 0;
+}
+
+.productContainer p {
+	margin-top: 0.2rem;
+}
+
+.productContainer img {
+	max-width: auto;
+	max-height: 200px;
+	object-fit: cover;
+	border-radius: 50%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

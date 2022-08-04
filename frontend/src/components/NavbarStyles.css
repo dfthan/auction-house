@@ -1,0 +1,21 @@
+.navContainer {
+	background-color: rgb(20, 20, 20);
+	display: flex;
+	padding: 0.7rem;
+	justify-content: space-around;
+	align-items: center;
+	z-index: 10;
+}
+
+.navContainer a {
+	color: rgb(211, 211, 211);
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 0 1rem;
+	text-decoration: none;
+}
+
+.navContainer a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
