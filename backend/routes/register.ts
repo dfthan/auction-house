@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 			email: req.body.email.toLowerCase(),
 			password: encryptPassword,
 		});
-		res.send("New account made successfully, please login");
+		res.json("New account made successfully, please login");
 	} catch (err) {
 		res.status(500).json(err);
 	}

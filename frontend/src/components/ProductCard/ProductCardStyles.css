@@ -23,12 +23,18 @@
 	}
 }
 
+@media (max-width: 400px) {
+	.productContainer {
+		max-width: 20rem;
+	}
+}
+
 .productContainer {
 	width: 25rem;
 	border-radius: 1rem;
-	background-color: rgb(32, 32, 32);
 	overflow: hidden;
 	margin-bottom: 1rem;
+	background-color: rgb(83, 83, 83);
 }
 
 .productInfo {

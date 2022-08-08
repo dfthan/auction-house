@@ -7,3 +7,4 @@
 | 2.8  | 2           | tried using foreign key n small tweaks all around        |
 | 3.8  | 1           | got foreign key working, made few routes, relation query |
 | 4.8  | 3           | started struggling on frontend css                       |
+| 8.8  | 2           | made grid layout, register form with formik and yup      |
