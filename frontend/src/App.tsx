@@ -1,28 +1,17 @@
-import { useEffect, useState } from "react";
-import ProductCard from "./components/ProductCard";
-import { Product } from "./types";
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
 
 const App = () => {
-	const [products, setProducts] = useState<Product[]>([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const resp = await fetch("http://localhost:3001/api/products");
-			const data = await resp.json();
-			setProducts(data);
-		};
-		fetchData();
-	}, []);
-
 	return (
-		<div>
-			<div>
-				<div className="wrapper">
-					<h1>Front page (for now) </h1>
-					<ProductCard product={products} />
-				</div>
-			</div>
-		</div>
+		<>
+			<Navbar />
+			<Routes>
+				<Route path="/" element={<LandingPage />} />
+				<Route path="/login" element={<Login />} />
+			</Routes>
+		</>
 	);
 };
 

@@ -4,15 +4,15 @@ import "./ProductCardStyles.css";
 const ProductCard = ({ product }: { product: Product[] }) => {
 	return (
 		<div className="productWrapper">
-			{product.map((product: Product) => (
-				<div key={product.id} className="productContainer">
+			{product.map(({ id, image, name, description, price }: Product) => (
+				<div key={id} className="productContainer">
 					<div className="productImage">
-						<img src={product.image} alt="Product" />
+						<img src={image} alt="Product" />
 					</div>
 					<div className="productInfo">
-						<h1>{product.name}</h1>
-						<p>{product.description}</p>
-						<p>{product.price} €</p>
+						<h3>{name}</h3>
+						<p>{description}</p>
+						<p>{price} €</p>
 					</div>
 				</div>
 			))}

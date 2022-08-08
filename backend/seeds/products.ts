@@ -38,5 +38,21 @@ export async function seed(knex: Knex): Promise<void> {
 			price: 2,
 			user_id: 9999999,
 		},
+		{
+			id: 23423414,
+			name: "Testituote4 asdasdads",
+			description: "Paras testaaja mitä tällä planeetalla on",
+			image: "https://picsum.photos/500",
+			price: 19.2,
+			user_id: 9999999,
+		},
+		{
+			id: 23423415,
+			name: "Testituote5 asdasdads",
+			description: "Paras testaaja mitä tällä planeetalla on",
+			image: "https://picsum.photos/500",
+			price: 19.2,
+			user_id: 9999999,
+		},
 	]);
 }
