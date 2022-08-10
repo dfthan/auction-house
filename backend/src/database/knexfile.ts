@@ -1,5 +1,7 @@
 import type { Knex } from "knex";
-require("dotenv").config();
+// knex + dotenv works horribly, must tell the path to the .env file
+require("dotenv").config({ path: "../../.env" });
+
 // db url cant be loaded from config file because db migrations wont work
 
 const config: { [key: string]: Knex.Config } = {
@@ -9,6 +11,9 @@ const config: { [key: string]: Knex.Config } = {
 		debug: true,
 		migrations: {
 			directory: __dirname + "/migrations/",
+		},
+		seeds: {
+			directory: __dirname + "/seeds/",
 		},
 	},
 };

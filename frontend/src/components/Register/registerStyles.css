@@ -14,6 +14,7 @@
 	color: rgba(211, 211, 211, 0.966);
 	background-color: rgba(255, 255, 255, 0.075);
 	border-radius: 1rem;
+	padding: 2rem;
 }
 
 .register-wrapper h1 {

@@ -5,6 +5,7 @@ const app = express();
 const knexfile = require("./knexfile");
 const { Model } = require("objection");
 const knex = require("knex");
+console.log(knexfile);
 Model.knex(knex(knexfile.development));
 app.use(express.json());
 app.use(cors());
