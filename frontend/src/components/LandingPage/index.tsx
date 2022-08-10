@@ -11,7 +11,7 @@ const LandingPage = () => {
 			const data = await resp.json();
 			dispatch({ type: "ADD_PRODUCT", payload: data });
 		};
-		if (state.products.length === 0) fetchData();
+		fetchData();
 	}, []);
 	console.log("reducer", state.products);
 	return (

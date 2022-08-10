@@ -2,7 +2,7 @@ import { Product } from "../types";
 
 // react.strictmode causes action doubling in the reducer
 
-export const reducer = (state: any, action: any) => {
+export const reducer = (state, action) => {
 	switch (action.type) {
 		case "ADD_PRODUCT":
 			return {
