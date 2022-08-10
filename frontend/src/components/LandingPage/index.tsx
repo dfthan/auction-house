@@ -16,6 +16,7 @@ const LandingPage = () => {
 	return (
 		<div className="wrapper">
 			<h1>Front page (for now) </h1>
+			<h1>Search bar goes here</h1>
 			<ProductCard product={products} />
 		</div>
 	);

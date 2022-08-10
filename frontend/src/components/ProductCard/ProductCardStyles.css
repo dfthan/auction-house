@@ -37,8 +37,18 @@
 	background-color: rgb(83, 83, 83);
 }
 
+.productContainer:hover {
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	transform: translate(-1px, -1px);
+}
+
+.productContainer a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .productInfo {
-	height: 14rem;
+	height: 12rem;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -48,6 +58,11 @@
 	color: white;
 	font-size: 1.5rem;
 	font-weight: bold;
+}
+
+.productInfo p {
+	font-size: 1.2rem;
+	margin: 0;
 }
 
 .productImage img {
