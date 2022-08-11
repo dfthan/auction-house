@@ -1,6 +1,6 @@
 import { Product } from "../types";
 
-type State = {
+export type State = {
 	products: Product[];
 };
 export const initialState: State = {

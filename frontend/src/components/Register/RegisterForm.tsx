@@ -1,7 +1,10 @@
 import { useFormik } from "formik";
+import { useNavigate } from "react-router";
 import * as Yup from "yup";
 
 const RegisterForm = () => {
+	const navigate = useNavigate();
+
 	const formik = useFormik({
 		initialValues: {
 			username: "",
@@ -30,7 +33,7 @@ const RegisterForm = () => {
 				body: JSON.stringify(values),
 			});
 			if (response.status === 200) {
-				alert("Successfully registered!");
+				navigate("/");
 			} else {
 				alert("Registration failed!");
 			}

@@ -29,14 +29,24 @@ router.post("/", async (req, res) => {
 
 		const tokenUser = {
 			id: user.id,
-			email: user.email,
+			username: user.username,
 		};
 		const token = jwt.sign(tokenUser, JWT_SECRET, {
 			expiresIn: "1h",
 		});
+
+		/* user token to db, no use for anything at the moment
 		user.token = token;
 		await User.query().findById(user.id).patch({ token: token });
-		res.json({ token });
+		*/
+		res.cookie("token", token, {
+			// secure: true, <--- https only
+			sameSite: "lax",
+			httpOnly: true,
+			//maxAge: 1000 * 60 * 60,
+		})
+			.status(200)
+			.json({ message: "Logged in" });
 	} catch (err) {
 		res.status(400).json("Something went wrong: " + err);
 	}

@@ -2,20 +2,19 @@ import { Link } from "react-router-dom";
 import { Product } from "../../types";
 import "./ProductCardStyles.css";
 
-const ProductCard = ({ product }: { product: Product[] }) => {
-	console.log(product);
+const ProductCard = ({ product }: { product: Array<Product> }) => {
 	return (
 		<div className="productWrapper">
-			{product.map(({ id, image, name, description, price }: Product) => (
-				<div key={id} className="productContainer">
-					<Link to={`/${id}`}>
+			{product.map((product: Product) => (
+				<div key={product.id} className="productContainer">
+					<Link to={`/${product.id}`}>
 						<div className="productImage">
-							<img src={image} alt="Product" />
+							<img src={product.image} alt="Product" />
 						</div>
 						<div className="productInfo">
-							<h3>{name}</h3>
-							<p>{description}</p>
-							<p>{price} €</p>
+							<h3>{product.name}</h3>
+							<p>{product.description}</p>
+							<p>{product.price} €</p>
 						</div>
 
 						<div>00:00:00</div>

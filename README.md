@@ -9,3 +9,4 @@
 | 4.8  | 3           | started struggling on frontend css                            |
 | 8.8  | 2           | made grid layout, register form with formik and yup           |
 | 10.8 | 2           | backend refactor, useReducer implemented, single product page |
+| 11.8 | 2           | cookies implemented, login form, typescript struggle          |
