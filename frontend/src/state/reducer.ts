@@ -12,19 +12,15 @@ export const reducer = (state: State, action: reducerAction) => {
 		case "SET_PRODUCT_LIST":
 			return {
 				...state,
-				products: action.payload.reduce(
-					(products, product) => ({
-						...products,
-						[product.id]: product,
-					}),
-					{}
-				),
+				products: action.payload,
 			};
+		/*
 		case "SINGLE_PRODUCT":
 			return {
 				...state,
 				product: action.payload,
 			};
+			*/
 		default:
 			return state;
 	}
