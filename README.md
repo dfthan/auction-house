@@ -10,3 +10,4 @@
 | 8.8  | 2           | made grid layout, register form with formik and yup           |
 | 10.8 | 2           | backend refactor, useReducer implemented, single product page |
 | 11.8 | 2           | cookies implemented, login form, typescript struggle          |
+| 13.8 | 2           | Worked on single product page and experimented with reducer   |

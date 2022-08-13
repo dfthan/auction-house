@@ -1,7 +1,7 @@
 import "./NotificationStyles.css";
 
 const Notification = () => {
-	return <></>;
+	return <>TODO NOTIFICATION</>;
 };
 
 export default Notification;
