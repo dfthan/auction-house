@@ -2,22 +2,28 @@ import { Product } from "../types";
 import { State } from "./state";
 
 // react.strictmode in index file causes action doubling in the reducer
-export enum ActionType {
-	ADD_PRODUCT = "ADD_PRODUCT",
-	REMOVE_PRODUCT = "REMOVE_PRODUCT",
-}
 
-interface ProductAction {
-	type: ActionType;
-	payload: Product;
-}
+export type reducerAction =
+	| { type: "SET_PRODUCT_LIST"; payload: Product[] }
+	| { type: "SINGLE_PRODUCT"; payload: Product };
 
-export const reducer = (state: State, action: ProductAction) => {
+export const reducer = (state: State, action: reducerAction) => {
 	switch (action.type) {
-		case "ADD_PRODUCT":
+		case "SET_PRODUCT_LIST":
 			return {
 				...state,
-				products: [...state.products, action.payload],
+				products: action.payload.reduce(
+					(products, product) => ({
+						...products,
+						[product.id]: product,
+					}),
+					{}
+				),
+			};
+		case "SINGLE_PRODUCT":
+			return {
+				...state,
+				product: action.payload,
 			};
 		default:
 			return state;

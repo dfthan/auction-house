@@ -1,8 +1,10 @@
 import { Product } from "../types";
 
 export type State = {
-	products: Product[];
+	products: { [id: string]: Product };
+	product: Product | null;
 };
 export const initialState: State = {
-	products: [],
+	products: {},
+	product: null,
 };

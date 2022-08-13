@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
-import { Product } from "../../types";
+import { useReducer } from "react";
+import { initialState, reducer } from "../../state";
 import "./ProductCardStyles.css";
 
-const ProductCard = ({ product }: { product: Array<Product> }) => {
+const ProductCard = () => {
+	const [state] = useReducer(reducer, initialState);
+	console.log(state);
+
+	return <></>;
+	/*
 	return (
 		<div className="productWrapper">
 			{product.map((product: Product) => (
@@ -23,6 +28,7 @@ const ProductCard = ({ product }: { product: Array<Product> }) => {
 			))}
 		</div>
 	);
+	*/
 };
 
 export default ProductCard;

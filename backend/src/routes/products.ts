@@ -33,7 +33,7 @@ router.post("/", auth, async (req, res) => {
 router.put("/:id", auth, async (req, res) => {
 	try {
 		await Product.query().findById(req.params.id).patch(req.body);
-		res.status(202).send(`Item id ${req.params.id} updated successfully`);
+		res.status(202).json(`Item id ${req.params.id} updated successfully`);
 	} catch (err) {
 		res.status(400).json({ err });
 	}
@@ -50,7 +50,7 @@ router.delete("/:id", auth, async (req, res) => {
 			return res.status(401).json({ message: "Unauthorized" });
 		}
 		await Product.query().deleteById(req.params.id);
-		res.status(202).send(`Item id ${req.params.id} deleted successfully`);
+		res.status(202).json(`Item id ${req.params.id} deleted successfully`);
 	} catch (err) {
 		res.status(400).json("Something went wrong: " + err);
 	}
