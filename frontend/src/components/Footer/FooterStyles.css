@@ -1,0 +1,18 @@
+footer {
+	z-index: 10;
+	border-top: 5px groove rgba(20, 20, 20, 0.274);
+}
+
+.footer-wrapper {
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+footer p {
+	margin: 0;
+}
+
+footer img {
+	padding: 0 12.5px;
+}

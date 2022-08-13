@@ -28,10 +28,12 @@ const SingleProductPage = () => {
 					<img src={product.image} alt={product.name} />
 				</div>
 				<div className="text-container">
-					<h2>{product.name}</h2>
-					<p>{product.price} €</p>
-					<p>{product.description}</p>
-					<div>
+					<div className="product-text">
+						<h2>{product.name}</h2>
+						<p>{product.price} €</p>
+						<p>{product.description}</p>
+					</div>
+					<div className="buttons">
 						<button>Buy</button>
 						<button>Bid</button>
 					</div>

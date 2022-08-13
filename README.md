@@ -11,3 +11,4 @@
 | 10.8 | 2           | backend refactor, useReducer implemented, single product page |
 | 11.8 | 2           | cookies implemented, login form, typescript struggle          |
 | 13.8 | 2           | Worked on single product page and experimented with reducer   |
+| 14.8 | 1           | more single product page css code, started on footer          |
