@@ -1,4 +1,5 @@
 import React from "react";
+import AddProductPage from "../AddProductPage";
 import "./index.css";
 
 const Modal = ({
@@ -12,10 +13,7 @@ const Modal = ({
 				<span className="close-button" onClick={() => setModal(false)}>
 					&times;
 				</span>
-				<p>
-					woapefkawpfkpawefkawepofkaeof kwaof aewpf waeofk
-					waeofkpawoek afewpo k
-				</p>
+				<AddProductPage />
 			</div>
 		</div>
 	);

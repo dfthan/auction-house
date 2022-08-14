@@ -40,9 +40,9 @@ router.post("/", async (req, res) => {
 		await User.query().findById(user.id).patch({ token: token });
 		*/
 		res.cookie("token", token, {
-			// secure: true, <--- https only
-			sameSite: "lax",
-			httpOnly: true,
+			secure: false,
+			//sameSite: "lax",
+			//httpOnly: true,
 			//maxAge: 1000 * 60 * 60,
 		})
 			.status(200)
