@@ -9,7 +9,7 @@ const knex = require("knex");
 Model.knex(knex(knexfile.development));
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: "http://172.31.23.43:3000", credentials: true }));
+app.use(cors({ origin: "http://172.31.17.80:3000", credentials: true }));
 
 app.use("/api/products", require("./routes/products"));
 app.use("/api/users", require("./routes/users"));

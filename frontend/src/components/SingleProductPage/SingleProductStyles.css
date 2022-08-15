@@ -7,6 +7,7 @@
 
 .product {
 	width: 60rem;
+	height: 480px;
 	max-height: 480px;
 	display: flex;
 	box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
@@ -23,8 +24,7 @@
 
 .image-container img {
 	width: 100%;
-	object-fit: cover;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	object-fit: scale-down;
 }
 
 .text-container {

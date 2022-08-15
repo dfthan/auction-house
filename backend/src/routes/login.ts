@@ -40,13 +40,13 @@ router.post("/", async (req, res) => {
 		await User.query().findById(user.id).patch({ token: token });
 		*/
 		res.cookie("token", token, {
-			secure: false,
-			//sameSite: "lax",
-			//httpOnly: true,
-			//maxAge: 1000 * 60 * 60,
+			secure: true, // true when https
+			sameSite: "none",
+			httpOnly: false,
+			maxAge: 24 * 60 * 60 * 1000, // 24 hours
 		})
 			.status(200)
-			.json({ message: "Logged in" });
+			.json({ message: "Logged in", cookie: token });
 	} catch (err) {
 		res.status(400).json("Something went wrong: " + err);
 	}

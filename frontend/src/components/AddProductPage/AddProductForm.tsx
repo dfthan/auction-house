@@ -12,9 +12,12 @@ const AddProductForm = () => {
 		},
 		validationSchema: Yup.object({
 			name: Yup.string().required("Name is required"),
-			price: Yup.string().required("Price is required"),
+			price: Yup.number()
+				.required("Price is required")
+				.positive("Price must be a positive number")
+				.max(999999.99, "Price must be less than 999999.99"),
 			description: Yup.string().required("Description is required"),
-			//image: Yup.string().required("Image is required"),
+			//image: Yup.string().required("Image is required"), <-- make proper validation & add image upload
 		}),
 		onSubmit: async (values) => {
 			console.log(values);
@@ -26,7 +29,9 @@ const AddProductForm = () => {
 				credentials: "include",
 				body: JSON.stringify(values),
 			});
-			console.log(response);
+			if (response.status === 201) {
+				window.location.reload();
+			}
 		},
 	});
 
@@ -45,6 +50,7 @@ const AddProductForm = () => {
 			) : null}
 			<label htmlFor="price">Price</label>
 			<input
+				type="number"
 				id="price"
 				name="price"
 				onChange={formik.handleChange}

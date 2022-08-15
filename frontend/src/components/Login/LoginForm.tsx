@@ -1,10 +1,7 @@
 import { useFormik } from "formik";
-import { useNavigate } from "react-router";
 import * as Yup from "yup";
 
 const LoginForm = () => {
-	const navigate = useNavigate();
-
 	const formik = useFormik({
 		initialValues: {
 			email: "",
@@ -18,6 +15,7 @@ const LoginForm = () => {
 		}),
 		onSubmit: async (values) => {
 			const response = await fetch("http://localhost:3001/api/login", {
+				credentials: "include",
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -25,7 +23,6 @@ const LoginForm = () => {
 				body: JSON.stringify(values),
 			});
 			if (response.status === 200) {
-				navigate("/");
 			} else {
 				alert("Login failed!");
 			}

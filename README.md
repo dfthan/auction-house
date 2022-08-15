@@ -13,3 +13,4 @@
 | 13.8 | 2           | Worked on single product page and experimented with reducer   |
 | 14.8 | 1           | more single product page css code, started on footer          |
 | 14.8 | 2           | modal made, add product form, trying to make cookies work     |
+| 15.8 | 1           | got cookies to work finally, some small changes               |
