@@ -1,7 +1,31 @@
 version: "3"
 
 services:
-    app:
+    database:
+        image: postgres
+        ports:
+            - 5432:5432
+        volumes:
+            - ./backend/data/postgres:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin
+            - POSTGRES_DB=auction-house-dev
+
+    server:
+        image: back-dev
+        build:
+            context: ./backend/
+            dockerfile: dev.Dockerfile
+        volumes:
+            - ./backend/:/usr/src/app/
+        ports:
+            - 3001:3001
+        depends_on:
+            - database
+        container_name: back-dev
+
+    client:
         image: front-dev
         build:
             context: ./frontend/
