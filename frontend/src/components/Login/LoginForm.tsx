@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { API_URL } from "../../constants";
 
 const LoginForm = () => {
 	const formik = useFormik({
@@ -14,7 +15,7 @@ const LoginForm = () => {
 			password: Yup.string().required("Password is required"),
 		}),
 		onSubmit: async (values) => {
-			const response = await fetch("http://localhost:3001/api/login", {
+			const response = await fetch(`${API_URL}/login`, {
 				credentials: "include",
 				method: "POST",
 				headers: {

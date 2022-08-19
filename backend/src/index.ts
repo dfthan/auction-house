@@ -15,11 +15,11 @@ app.use(cors());
 console.log(knexfile.development);
 
 app.use("/health", require("./routes/healthcheck"));
-app.use("/api/products", require("./routes/products"));
-app.use("/api/users", require("./routes/users"));
-app.use("/api/register", require("./routes/register"));
-app.use("/api/login", require("./routes/login"));
-app.use("/api/logout", require("./routes/logout"));
+app.use("/products", require("./routes/products"));
+app.use("/users", require("./routes/users"));
+app.use("/register", require("./routes/register"));
+app.use("/login", require("./routes/login"));
+app.use("/logout", require("./routes/logout"));
 
 app.listen(PORT, "0.0.0.0", () => {
 	console.log(`Server is running on port http://localhost:${PORT}`);

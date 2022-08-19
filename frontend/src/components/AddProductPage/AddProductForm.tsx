@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { API_URL } from "../../constants";
 import "./AddProductFormStyles.css";
 
 const AddProductForm = () => {
@@ -21,7 +22,7 @@ const AddProductForm = () => {
 		}),
 		onSubmit: async (values) => {
 			console.log(values);
-			const response = await fetch("http://localhost:3001/api/products", {
+			const response = await fetch(`${API_URL}/products`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

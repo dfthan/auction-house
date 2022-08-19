@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import { useNavigate } from "react-router";
 import * as Yup from "yup";
+import { API_URL } from "../../constants";
 
 const RegisterForm = () => {
 	const navigate = useNavigate();
@@ -25,7 +26,7 @@ const RegisterForm = () => {
 				.oneOf([Yup.ref("password"), null], "Passwords must match"),
 		}),
 		onSubmit: async (values) => {
-			const response = await fetch("http://localhost:3001/api/register", {
+			const response = await fetch(`${API_URL}/register`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

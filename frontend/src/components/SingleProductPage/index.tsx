@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { API_URL } from "../../constants";
 import { Product } from "../../types";
 import "./SingleProductStyles.css";
 
@@ -8,9 +9,7 @@ const SingleProductPage = () => {
 	const [product, setProduct] = useState<Product>();
 	useEffect(() => {
 		const fetchSingleProduct = async () => {
-			const resp = await fetch(
-				`http://localhost:3001/api/products/${id}`
-			);
+			const resp = await fetch(`${API_URL}/products/${id}`);
 			const data = await resp.json();
 			setProduct(data);
 		};

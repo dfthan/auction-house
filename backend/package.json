@@ -4,12 +4,14 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"start": "node build",
 		"dev": "nodemon src/index.ts",
 		"migrate:up": "knex --knexfile ./src/database/knexfile.ts migrate:up",
 		"migrate:down": "knex --knexfile ./src/database/knexfile.ts migrate:down",
 		"migrate:latest": "knex --knexfile ./src/database/knexfile.ts migrate:latest",
 		"seed": "knex --knexfile ./src/database/knexfile.ts seed:run",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc"
 	},
 	"keywords": [],
 	"author": "",

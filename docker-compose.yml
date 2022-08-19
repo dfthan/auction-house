@@ -2,42 +2,50 @@ version: "3"
 
 services:
     database:
-        image: postgres:latest
-        restart: always
+        image: postgres
         ports:
             - 5432:5432
-        volumes:
-            - ./backend/data/postgres:/var/lib/postgresql/data
         environment:
             - POSTGRES_USER=admin
             - POSTGRES_PASSWORD=admin
-            - POSTGRES_DB=auction-house-dev
+            - POSTGRES_DB=dev
+        volumes:
+            - ./backend/data/postgres:/var/lib/postgresql/data
 
     server:
-        image: back-dev
+        image: back-prod
         build:
             context: ./backend/
-            dockerfile: dev.Dockerfile
         command: sh -c "npm run migrate:latest && npm run dev"
         volumes:
-            - ./backend/:/usr/src/app/
+            - ./backend/:/usr/src/app
         environment:
-            - NODE_ENV=development
+            - NODE_ENV=development # change to production when new database, change knex file in db
             - DATABASE_URL=postgres://admin:admin@localhost:5432/auction-house-dev
             - PORT=3001
         ports:
             - 3001:3001
         depends_on:
             - database
-        container_name: back-dev
+        container_name: back-prod
 
     client:
-        image: front-dev
+        image: front-prod
         build:
             context: ./frontend/
-            dockerfile: dev.Dockerfile
         volumes:
             - ./frontend/:/usr/src/app/
         ports:
-            - 3000:3000
-        container_name: front-dev
+            - 3000:80
+        container_name: front-prod
+
+    nginx:
+        image: nginx
+        ports:
+            - 80:80
+        volumes:
+            - ./nginx.conf/:/etc/nginx/nginx.conf:ro
+        container_name: nginx
+        depends_on:
+            - server
+            - client
