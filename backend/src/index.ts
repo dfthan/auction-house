@@ -9,8 +9,7 @@ const knex = require("knex");
 Model.knex(knex(knexfile.development));
 app.use(cookieParser());
 app.use(express.json());
-//app.use(cors({ origin: "http://172.31.16.96:3000", credentials: true })); need to fix with docker
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 console.log(knexfile.development);
 
@@ -20,7 +19,8 @@ app.use("/users", require("./routes/users"));
 app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
 app.use("/logout", require("./routes/logout"));
+app.use("/status", require("./routes/userStatus"));
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
 	console.log(`Server is running on port http://localhost:${PORT}`);
 });

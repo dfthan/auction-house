@@ -9,6 +9,7 @@
 		"migrate:up": "knex --knexfile ./src/database/knexfile.ts migrate:up",
 		"migrate:down": "knex --knexfile ./src/database/knexfile.ts migrate:down",
 		"migrate:latest": "knex --knexfile ./src/database/knexfile.ts migrate:latest",
+		"migrate:rollback": "knex --knexfile ./src/database/knexfile.ts migrate:rollback",
 		"seed": "knex --knexfile ./src/database/knexfile.ts seed:run",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc"

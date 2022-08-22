@@ -1,22 +1,10 @@
-import { useEffect, useReducer, useState } from "react";
-import { API_URL } from "../../constants";
-import { initialState, reducer } from "../../state/index";
+import { useState } from "react";
 import Footer from "../Footer";
 import Modal from "../Modal";
 import ProductCard from "../ProductCard";
 
-const LandingPage = () => {
-	const [{ products }, dispatch] = useReducer(reducer, initialState);
+const LandingPage = ({ products }: any) => {
 	const [modal, setModal] = useState<Boolean>(false);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const resp = await fetch(`${API_URL}/products`);
-			const data = await resp.json();
-			dispatch({ type: "SET_PRODUCT_LIST", payload: data });
-		};
-		fetchData();
-	}, []);
 
 	return (
 		<div className="wrapper">

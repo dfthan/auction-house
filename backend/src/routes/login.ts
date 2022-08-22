@@ -42,11 +42,11 @@ router.post("/", async (req, res) => {
 		res.cookie("token", token, {
 			secure: true, // true when https
 			sameSite: "none",
-			httpOnly: false,
+			httpOnly: true,
 			maxAge: 24 * 60 * 60 * 1000, // 24 hours
 		})
 			.status(200)
-			.json({ message: "Logged in", cookie: token });
+			.json({ message: "Logged in" });
 	} catch (err) {
 		res.status(400).json("Something went wrong: " + err);
 	}
