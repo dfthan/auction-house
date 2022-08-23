@@ -5,8 +5,11 @@ import "./NavbarStyles.css";
 const Navbar = ({ logged }: { logged: boolean }) => {
 	const logout = async () => {
 		console.log("logging out");
-		await fetch(`${API_URL}/logout`);
-		//window.location.reload();
+		await fetch(`${API_URL}/logout`, {
+			method: "POST",
+			credentials: "include",
+		});
+		window.location.reload();
 	};
 
 	if (logged) {

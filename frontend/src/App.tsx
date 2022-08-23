@@ -36,7 +36,6 @@ const App = () => {
 		};
 		fetchLoggedIn();
 	}, []);
-	console.log(logged);
 
 	if (loading) {
 		return <div>Loading...</div>;
