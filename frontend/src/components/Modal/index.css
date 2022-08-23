@@ -21,7 +21,8 @@
 }
 
 .close-button {
-	float: right;
+	position: absolute;
+	right: auto;
 	color: #aaa;
 	font-size: 30px;
 	font-weight: bold;

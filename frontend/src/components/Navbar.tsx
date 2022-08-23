@@ -4,7 +4,6 @@ import "./NavbarStyles.css";
 
 const Navbar = ({ logged }: { logged: boolean }) => {
 	const logout = async () => {
-		console.log("logging out");
 		await fetch(`${API_URL}/logout`, {
 			method: "POST",
 			credentials: "include",
@@ -17,7 +16,9 @@ const Navbar = ({ logged }: { logged: boolean }) => {
 			<header>
 				<nav className="navContainer">
 					<Link to="/">Home</Link>
-					<a onClick={() => logout()}>Log out</a>
+					<Link to="/" onClick={() => logout()}>
+						Log out
+					</Link>
 				</nav>
 			</header>
 		);
