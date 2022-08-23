@@ -1,13 +1,14 @@
 footer {
+	width: 100%;
+	height: 40px;
 	z-index: 10;
 	border-top: 8px groove rgba(20, 20, 20, 0.274);
-	display: flex;
 }
 
 .footer-wrapper {
-	width: 97%;
 	display: flex;
 	align-items: center;
+	text-align: center;
 }
 
 footer p {
@@ -19,6 +20,8 @@ footer img {
 }
 
 .arrow-container {
+	position: absolute;
+	right: 2%;
 	display: flex;
 	align-items: center;
 	justify-content: center;

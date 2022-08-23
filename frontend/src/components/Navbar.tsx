@@ -6,23 +6,25 @@ import "./NavbarStyles.css";
 const Navbar = ({
 	logged,
 	setModal,
+	setLogged,
 }: {
-	logged: boolean;
-	setModal: React.Dispatch<SetStateAction<Boolean>>;
+	logged: Boolean;
+	setLogged: React.Dispatch<SetStateAction<Boolean>>;
+	setModal: React.Dispatch<SetStateAction<string>>;
 }) => {
 	const logout = async () => {
 		await fetch(`${API_URL}/logout`, {
 			method: "POST",
 			credentials: "include",
 		});
-		window.location.reload();
+		setLogged(false);
 	};
 
 	if (logged) {
 		return (
 			<header>
 				<nav className="navContainer">
-					<Link to="/" onClick={() => setModal(true)}>
+					<Link to="/" onClick={() => setModal("addProduct")}>
 						Add product
 					</Link>
 					<Link to="/">Home</Link>
@@ -37,10 +39,12 @@ const Navbar = ({
 		<header>
 			<nav className="navContainer">
 				<Link to="/">Home</Link>
-				<Link to="/" onClick={() => setModal(true)}>
+				<Link to="/" onClick={() => setModal("register")}>
 					Register
 				</Link>
-				<Link to="/login">Login</Link>
+				<Link to="/" onClick={() => setModal("login")}>
+					Login
+				</Link>
 			</nav>
 		</header>
 	);

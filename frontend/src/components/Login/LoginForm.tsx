@@ -1,8 +1,15 @@
 import { useFormik } from "formik";
+import { SetStateAction } from "react";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
 
-const LoginForm = () => {
+const LoginForm = ({
+	setModal,
+	setLogged,
+}: {
+	setModal: React.Dispatch<SetStateAction<string>>;
+	setLogged: React.Dispatch<SetStateAction<Boolean>>;
+}) => {
 	const formik = useFormik({
 		initialValues: {
 			email: "",
@@ -24,6 +31,8 @@ const LoginForm = () => {
 				body: JSON.stringify(values),
 			});
 			if (response.status === 200) {
+				setModal("closed");
+				setLogged(true);
 			} else {
 				alert("Login failed!");
 			}

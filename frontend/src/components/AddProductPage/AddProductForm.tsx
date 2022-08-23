@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
-import "./AddProductFormStyles.css";
 
 const AddProductForm = () => {
 	const formik = useFormik({

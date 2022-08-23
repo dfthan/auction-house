@@ -42,6 +42,7 @@ const RegisterForm = () => {
 	});
 	return (
 		<form onSubmit={formik.handleSubmit}>
+			<h1>Register</h1>
 			<label htmlFor="email">Email</label>
 			<input
 				id="email"

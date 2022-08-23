@@ -1,17 +1,15 @@
 import { useEffect, useReducer, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
-import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-import Register from "./components/Register";
 import SingleProductPage from "./components/SingleProductPage";
 import { API_URL } from "./constants";
 import { initialState, reducer } from "./state";
 
 const App = () => {
-	const [logged, setLogged] = useState(false);
-	const [loading, setLoading] = useState(true);
-	const [modal, setModal] = useState<Boolean>(false);
+	const [logged, setLogged] = useState<Boolean>(false);
+	const [loading, setLoading] = useState<Boolean>(true);
+	const [modal, setModal] = useState<string>("closed");
 	const [{ products }, dispatch] = useReducer(reducer, initialState);
 	useEffect(() => {
 		const fetchData = async () => {
@@ -44,7 +42,7 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar logged={logged} setModal={setModal} />
+			<Navbar logged={logged} setModal={setModal} setLogged={setLogged} />
 			<Routes>
 				<Route
 					path="/"
@@ -53,12 +51,11 @@ const App = () => {
 							products={products}
 							modal={modal}
 							setModal={setModal}
+							setLogged={setLogged}
 						/>
 					}
 				/>
 				<Route path="/:id" element={<SingleProductPage />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/login" element={<Login />} />
 			</Routes>
 		</>
 	);
