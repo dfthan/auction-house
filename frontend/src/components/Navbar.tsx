@@ -1,8 +1,15 @@
+import { SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
 import "./NavbarStyles.css";
 
-const Navbar = ({ logged }: { logged: boolean }) => {
+const Navbar = ({
+	logged,
+	setModal,
+}: {
+	logged: boolean;
+	setModal: React.Dispatch<SetStateAction<Boolean>>;
+}) => {
 	const logout = async () => {
 		await fetch(`${API_URL}/logout`, {
 			method: "POST",
@@ -15,6 +22,9 @@ const Navbar = ({ logged }: { logged: boolean }) => {
 		return (
 			<header>
 				<nav className="navContainer">
+					<Link to="/" onClick={() => setModal(true)}>
+						Add product
+					</Link>
 					<Link to="/">Home</Link>
 					<Link to="/" onClick={() => logout()}>
 						Log out
@@ -27,7 +37,9 @@ const Navbar = ({ logged }: { logged: boolean }) => {
 		<header>
 			<nav className="navContainer">
 				<Link to="/">Home</Link>
-				<Link to="/register">Register</Link>
+				<Link to="/" onClick={() => setModal(true)}>
+					Register
+				</Link>
 				<Link to="/login">Login</Link>
 			</nav>
 		</header>

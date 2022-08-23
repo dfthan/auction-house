@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { SetStateAction } from "react";
 import { Product } from "../../types";
 import Footer from "../Footer";
 import Modal from "../Modal";
 import ProductCard from "../ProductCard";
 import "./index.css";
 
-const LandingPage = ({ products }: { products: Product[] }) => {
-	const [modal, setModal] = useState<Boolean>(false);
-
+const LandingPage = ({
+	products,
+	modal,
+	setModal,
+}: {
+	products: Product[];
+	modal: Boolean;
+	setModal: React.Dispatch<SetStateAction<Boolean>>;
+}) => {
 	return (
 		<div className="wrapper">
 			<h1>Front page (for now) </h1>
@@ -20,9 +26,6 @@ const LandingPage = ({ products }: { products: Product[] }) => {
 				/>
 				<label>Search</label>
 			</div>
-			<button id="add-button" onClick={() => setModal(true)}>
-				Add product
-			</button>
 			{modal && <Modal setModal={setModal} />}
 			<ProductCard product={products} />
 			<Footer />

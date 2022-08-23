@@ -11,6 +11,7 @@ import { initialState, reducer } from "./state";
 const App = () => {
 	const [logged, setLogged] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [modal, setModal] = useState<Boolean>(false);
 	const [{ products }, dispatch] = useReducer(reducer, initialState);
 	useEffect(() => {
 		const fetchData = async () => {
@@ -43,9 +44,18 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar logged={logged} />
+			<Navbar logged={logged} setModal={setModal} />
 			<Routes>
-				<Route path="/" element={<LandingPage products={products} />} />
+				<Route
+					path="/"
+					element={
+						<LandingPage
+							products={products}
+							modal={modal}
+							setModal={setModal}
+						/>
+					}
+				/>
 				<Route path="/:id" element={<SingleProductPage />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
