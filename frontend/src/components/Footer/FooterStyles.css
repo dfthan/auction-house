@@ -1,12 +1,13 @@
 footer {
 	z-index: 10;
 	border-top: 8px groove rgba(20, 20, 20, 0.274);
+	display: flex;
 }
 
 .footer-wrapper {
+	width: 97%;
 	display: flex;
 	align-items: center;
-	text-align: center;
 }
 
 footer p {
@@ -15,4 +16,20 @@ footer p {
 
 footer img {
 	padding: 0 12.5px;
+}
+
+.arrow-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.arrow {
+	border: solid white;
+	border-width: 0 5px 5px 0;
+	display: inline-block;
+	padding: 5px;
+	transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+	cursor: pointer;
 }

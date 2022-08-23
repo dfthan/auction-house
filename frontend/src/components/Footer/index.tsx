@@ -12,6 +12,12 @@ const Footer = () => {
 				</div>
 				<p>Made by Hannu</p>
 			</div>
+			<div
+				className="arrow-container"
+				onClick={() => window.scrollTo(0, 0)}
+			>
+				<i className="arrow"></i>
+			</div>
 		</footer>
 	);
 };
