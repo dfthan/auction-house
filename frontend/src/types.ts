@@ -1,3 +1,5 @@
+import { reducerAction } from "./state";
+
 export interface Product {
 	id: number;
 	name: string;
@@ -7,4 +9,9 @@ export interface Product {
 	user_id: number;
 	created_at: string;
 	updated_at: string;
+}
+
+export interface Logged {
+	logged: boolean;
+	dispatch: React.Dispatch<reducerAction>;
 }

@@ -9,22 +9,14 @@ const LandingPage = ({
 	products,
 	modal,
 	setModal,
-	setLogged,
 }: {
 	products: Product[];
 	modal: string;
 	setModal: React.Dispatch<SetStateAction<string>>;
-	setLogged: React.Dispatch<SetStateAction<Boolean>>;
 }) => {
 	const modalState = () => {
 		if (modal !== "closed") {
-			return (
-				<Modal
-					modal={modal}
-					setModal={setModal}
-					setLogged={setLogged}
-				/>
-			);
+			return <Modal modal={modal} setModal={setModal} />;
 		}
 		return null;
 	};

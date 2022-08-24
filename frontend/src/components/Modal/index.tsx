@@ -7,11 +7,9 @@ import "./index.css";
 const Modal = ({
 	setModal,
 	modal,
-	setLogged,
 }: {
 	setModal: React.Dispatch<SetStateAction<string>>;
 	modal: string;
-	setLogged: React.Dispatch<SetStateAction<Boolean>>;
 }) => {
 	const renderModal = () => {
 		switch (modal) {
@@ -20,7 +18,7 @@ const Modal = ({
 			case "register":
 				return <RegisterForm />;
 			case "login":
-				return <LoginForm setModal={setModal} setLogged={setLogged} />;
+				return <LoginForm setModal={setModal} />;
 			default:
 				return null;
 		}

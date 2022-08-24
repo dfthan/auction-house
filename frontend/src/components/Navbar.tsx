@@ -1,26 +1,24 @@
-import { SetStateAction } from "react";
+import { SetStateAction, useContext } from "react";
 import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
+import { loggedContext } from "../state";
 import "./NavbarStyles.css";
 
 const Navbar = ({
-	logged,
 	setModal,
-	setLogged,
 }: {
-	logged: Boolean;
-	setLogged: React.Dispatch<SetStateAction<Boolean>>;
 	setModal: React.Dispatch<SetStateAction<string>>;
 }) => {
+	const context = useContext(loggedContext);
 	const logout = async () => {
 		await fetch(`${API_URL}/logout`, {
 			method: "POST",
 			credentials: "include",
 		});
-		setLogged(false);
+		context.dispatch({ type: "SET_LOGGED", payload: false });
 	};
 
-	if (logged) {
+	if (context.logged) {
 		return (
 			<header>
 				<nav className="navContainer">

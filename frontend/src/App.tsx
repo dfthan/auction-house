@@ -4,13 +4,12 @@ import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
 import SingleProductPage from "./components/SingleProductPage";
 import { API_URL } from "./constants";
-import { initialState, reducer } from "./state";
+import { initialState, loggedContext, reducer } from "./state";
 
 const App = () => {
-	const [logged, setLogged] = useState<Boolean>(false);
 	const [loading, setLoading] = useState<Boolean>(true);
 	const [modal, setModal] = useState<string>("closed");
-	const [{ products }, dispatch] = useReducer(reducer, initialState);
+	const [{ products, logged }, dispatch] = useReducer(reducer, initialState);
 	useEffect(() => {
 		const fetchData = async () => {
 			const resp = await fetch(`${API_URL}/products`);
@@ -29,7 +28,7 @@ const App = () => {
 				},
 			});
 			if (response.status === 200) {
-				setLogged(true);
+				dispatch({ type: "SET_LOGGED", payload: true });
 			}
 			setLoading(false);
 		};
@@ -42,21 +41,22 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar logged={logged} setModal={setModal} setLogged={setLogged} />
-			<Routes>
-				<Route
-					path="/"
-					element={
-						<LandingPage
-							products={products}
-							modal={modal}
-							setModal={setModal}
-							setLogged={setLogged}
-						/>
-					}
-				/>
-				<Route path="/:id" element={<SingleProductPage />} />
-			</Routes>
+			<loggedContext.Provider value={{ logged, dispatch }}>
+				<Navbar setModal={setModal} />
+				<Routes>
+					<Route
+						path="/"
+						element={
+							<LandingPage
+								products={products}
+								modal={modal}
+								setModal={setModal}
+							/>
+						}
+					/>
+					<Route path="/:id" element={<SingleProductPage />} />
+				</Routes>
+			</loggedContext.Provider>
 		</>
 	);
 };
