@@ -1,22 +1,17 @@
-import { SetStateAction } from "react";
+import { useContext } from "react";
+import { modalContext } from "../../state";
 import { Product } from "../../types";
 import Footer from "../Footer";
 import Modal from "../Modal";
 import ProductCard from "../ProductCard";
 import "./index.css";
 
-const LandingPage = ({
-	products,
-	modal,
-	setModal,
-}: {
-	products: Product[];
-	modal: string;
-	setModal: React.Dispatch<SetStateAction<string>>;
-}) => {
+const LandingPage = ({ products }: { products: Product[] }) => {
+	const modalCont = useContext(modalContext);
 	const modalState = () => {
-		if (modal !== "closed") {
-			return <Modal modal={modal} setModal={setModal} />;
+		console.log("here", modalCont.modal);
+		if (modalCont.modal !== "closed") {
+			return <Modal />;
 		}
 		return null;
 	};

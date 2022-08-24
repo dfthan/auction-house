@@ -1,28 +1,34 @@
-import { SetStateAction, useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
-import { loggedContext } from "../state";
+import { loggedContext, modalContext } from "../state";
 import "./NavbarStyles.css";
 
-const Navbar = ({
-	setModal,
-}: {
-	setModal: React.Dispatch<SetStateAction<string>>;
-}) => {
-	const context = useContext(loggedContext);
+const Navbar = ({}: {}) => {
+	const loginContext = useContext(loggedContext);
+	const modal = useContext(modalContext);
+
 	const logout = async () => {
 		await fetch(`${API_URL}/logout`, {
 			method: "POST",
 			credentials: "include",
 		});
-		context.dispatch({ type: "SET_LOGGED", payload: false });
+		loginContext.dispatch({ type: "SET_LOGGED", payload: false });
 	};
 
-	if (context.logged) {
+	if (loginContext.logged) {
 		return (
 			<header>
 				<nav className="navContainer">
-					<Link to="/" onClick={() => setModal("addProduct")}>
+					<Link
+						to="/"
+						onClick={() =>
+							modal.dispatch({
+								type: "SET_MODAL",
+								payload: "addProduct",
+							})
+						}
+					>
 						Add product
 					</Link>
 					<Link to="/">Home</Link>
@@ -37,10 +43,23 @@ const Navbar = ({
 		<header>
 			<nav className="navContainer">
 				<Link to="/">Home</Link>
-				<Link to="/" onClick={() => setModal("register")}>
+				<Link
+					to="/"
+					onClick={() =>
+						modal.dispatch({
+							type: "SET_MODAL",
+							payload: "register",
+						})
+					}
+				>
 					Register
 				</Link>
-				<Link to="/" onClick={() => setModal("login")}>
+				<Link
+					to="/"
+					onClick={() =>
+						modal.dispatch({ type: "SET_MODAL", payload: "login" })
+					}
+				>
 					Login
 				</Link>
 			</nav>

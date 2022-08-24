@@ -15,3 +15,8 @@ export interface Logged {
 	logged: boolean;
 	dispatch: React.Dispatch<reducerAction>;
 }
+
+export interface Modal {
+	modal: string;
+	dispatch: React.Dispatch<reducerAction>;
+}

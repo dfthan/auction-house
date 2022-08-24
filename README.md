@@ -18,3 +18,4 @@
 | 20.8 | 2     | refactor, docker prod files, production db still to do. Nginx stuff                       |
 | 22.8 | 2.5   | worked on cookies, sessions, logout, bit of refactoring, cors issues fixed in container.  |
 | 23.8 | 2.5   | fixed logout, landing & nav css, refactored files, made login & register modal compatible |
+| 24.8 | 1.5   | tried learning usecontext to avoid propdrilling and broke it all                          |

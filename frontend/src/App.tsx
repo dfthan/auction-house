@@ -4,12 +4,14 @@ import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
 import SingleProductPage from "./components/SingleProductPage";
 import { API_URL } from "./constants";
-import { initialState, loggedContext, reducer } from "./state";
+import { initialState, loggedContext, modalContext, reducer } from "./state";
 
 const App = () => {
 	const [loading, setLoading] = useState<Boolean>(true);
-	const [modal, setModal] = useState<string>("closed");
-	const [{ products, logged }, dispatch] = useReducer(reducer, initialState);
+	const [{ products, logged, modal }, dispatch] = useReducer(
+		reducer,
+		initialState
+	);
 	useEffect(() => {
 		const fetchData = async () => {
 			const resp = await fetch(`${API_URL}/products`);
@@ -42,20 +44,16 @@ const App = () => {
 	return (
 		<>
 			<loggedContext.Provider value={{ logged, dispatch }}>
-				<Navbar setModal={setModal} />
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<LandingPage
-								products={products}
-								modal={modal}
-								setModal={setModal}
-							/>
-						}
-					/>
-					<Route path="/:id" element={<SingleProductPage />} />
-				</Routes>
+				<modalContext.Provider value={{ modal, dispatch }}>
+					<Navbar />
+					<Routes>
+						<Route
+							path="/"
+							element={<LandingPage products={products} />}
+						/>
+						<Route path="/:id" element={<SingleProductPage />} />
+					</Routes>
+				</modalContext.Provider>
 			</loggedContext.Provider>
 		</>
 	);

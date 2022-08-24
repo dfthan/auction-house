@@ -1,14 +1,11 @@
 import { useFormik } from "formik";
-import { SetStateAction, useContext } from "react";
+import { useContext } from "react";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
-import { loggedContext } from "../../state";
+import { loggedContext, modalContext } from "../../state";
 
-const LoginForm = ({
-	setModal,
-}: {
-	setModal: React.Dispatch<SetStateAction<string>>;
-}) => {
+const LoginForm = ({}: {}) => {
+	const modalCont = useContext(modalContext);
 	const context = useContext(loggedContext);
 	const formik = useFormik({
 		initialValues: {
@@ -31,7 +28,7 @@ const LoginForm = ({
 				body: JSON.stringify(values),
 			});
 			if (response.status === 200) {
-				setModal("closed");
+				modalCont.dispatch({ type: "SET_MODAL", payload: "closed" });
 				context.dispatch({ type: "SET_LOGGED", payload: true });
 			} else {
 				alert("Login failed!");
