@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setModal } from "../../state";
+import { setModal } from "../../state/modalSlice";
 import { RootState } from "../../state/store";
 import AddProductForm from "../AddProductPage/AddProductForm";
 import LoginForm from "../Login/LoginForm";

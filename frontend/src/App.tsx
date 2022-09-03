@@ -1,22 +1,23 @@
-import { useEffect, useReducer, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
 import SingleProductPage from "./components/SingleProductPage";
 import { API_URL } from "./constants";
-import { initialState, reducer } from "./state";
+import { setLogged } from "./state/loginSlice";
+import { setProductList } from "./state/productSlice";
 import { RootState } from "./state/store";
 
 const App = () => {
-	const asd = useSelector((state: RootState) => state.modal);
+	const dispatch = useDispatch();
+	const { logged, products } = useSelector((state: RootState) => state);
 	const [loading, setLoading] = useState<Boolean>(true);
-	const [{ products }, dispatch] = useReducer(reducer, initialState);
 	useEffect(() => {
 		const fetchData = async () => {
 			const resp = await fetch(`${API_URL}/products`);
 			const data = await resp.json();
-			dispatch({ type: "SET_PRODUCT_LIST", payload: data });
+			dispatch(setProductList(data));
 		};
 		fetchData();
 	}, []);
@@ -30,7 +31,7 @@ const App = () => {
 				},
 			});
 			if (response.status === 200) {
-				dispatch({ type: "SET_LOGGED", payload: true });
+				dispatch(setLogged(true));
 			}
 			setLoading(false);
 		};
@@ -40,13 +41,13 @@ const App = () => {
 	if (loading) {
 		return <div>Loading...</div>;
 	}
-	console.log(asd);
+	console.log(logged, products);
 
 	return (
 		<>
 			<Navbar />
 			<Routes>
-				<Route path="/" element={<LandingPage products={products} />} />
+				<Route path="/" element={<LandingPage />} />
 				<Route path="/:id" element={<SingleProductPage />} />
 			</Routes>
 		</>

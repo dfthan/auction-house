@@ -1,13 +1,12 @@
 import { useFormik } from "formik";
-import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
-import { loggedContext, setModal } from "../../state";
+import { setLogged } from "../../state/loginSlice";
+import { setModal } from "../../state/modalSlice";
 
 const LoginForm = ({}: {}) => {
 	const dispatch = useDispatch();
-	const context = useContext(loggedContext);
 	const formik = useFormik({
 		initialValues: {
 			email: "",
@@ -29,7 +28,7 @@ const LoginForm = ({}: {}) => {
 				body: JSON.stringify(values),
 			});
 			if (response.status === 200) {
-				context.dispatch({ type: "SET_LOGGED", payload: true });
+				dispatch(setLogged(true));
 				dispatch(setModal("closed"));
 			} else {
 				alert("Login failed!");

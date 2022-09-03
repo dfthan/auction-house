@@ -1,23 +1,24 @@
-import { useContext } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
-import { loggedContext, setModal } from "../state";
+import { setLogged } from "../state/loginSlice";
+import { setModal } from "../state/modalSlice";
+import { RootState } from "../state/store";
 import "./NavbarStyles.css";
 
 const Navbar = ({}: {}) => {
 	const dispatch = useDispatch();
-	const loginContext = useContext(loggedContext);
+	const { logged } = useSelector((state: RootState) => state.logged);
 
 	const logout = async () => {
 		await fetch(`${API_URL}/logout`, {
 			method: "POST",
 			credentials: "include",
 		});
-		loginContext.dispatch({ type: "SET_LOGGED", payload: false });
+		dispatch(setLogged(false));
 	};
 
-	if (loginContext.logged) {
+	if (logged) {
 		return (
 			<header>
 				<nav className="navContainer">

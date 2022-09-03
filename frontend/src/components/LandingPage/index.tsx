@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
-import { Product } from "../../types";
 import Footer from "../Footer";
 import Modal from "../Modal";
 import ProductCard from "../ProductCard";
 import "./index.css";
 
-const LandingPage = ({ products }: { products: Product[] }) => {
+const LandingPage = () => {
 	const { modal } = useSelector((state: RootState) => state.modal);
 	const modalState = () => {
 		if (modal !== "closed") {
@@ -29,7 +28,7 @@ const LandingPage = ({ products }: { products: Product[] }) => {
 					<label>Search</label>
 				</div>
 				{modalState()}
-				<ProductCard product={products} />
+				<ProductCard />
 			</div>
 			<Footer />
 		</div>

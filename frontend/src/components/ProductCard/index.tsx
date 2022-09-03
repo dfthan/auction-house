@@ -1,11 +1,14 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import type { RootState } from "../../state/store";
 import { Product } from "../../types";
 import "./ProductCardStyles.css";
 
-const ProductCard = ({ product }: any) => {
+const ProductCard = () => {
+	const { products } = useSelector((state: RootState) => state.products);
 	return (
 		<div className="productWrapper">
-			{product.map((product: Product) => (
+			{products.map((product: Product) => (
 				<div key={product.id} className="productContainer">
 					<Link to={`/${product.id}`}>
 						<div className="productImage">

@@ -19,3 +19,4 @@
 | 22.8 | 2.5   | worked on cookies, sessions, logout, bit of refactoring, cors issues fixed in container.  |
 | 23.8 | 2.5   | fixed logout, landing & nav css, refactored files, made login & register modal compatible |
 | 24.8 | 1.5   | tried learning usecontext to avoid propdrilling and broke it all                          |
+| 3.9  | 1     | replaced context with redux and made it work                                              |
