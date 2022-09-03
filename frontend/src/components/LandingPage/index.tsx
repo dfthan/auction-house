@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { modalContext } from "../../state";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
 import { Product } from "../../types";
 import Footer from "../Footer";
 import Modal from "../Modal";
@@ -7,10 +7,9 @@ import ProductCard from "../ProductCard";
 import "./index.css";
 
 const LandingPage = ({ products }: { products: Product[] }) => {
-	const modalCont = useContext(modalContext);
+	const { modal } = useSelector((state: RootState) => state.modal);
 	const modalState = () => {
-		console.log("here", modalCont.modal);
-		if (modalCont.modal !== "closed") {
+		if (modal !== "closed") {
 			return <Modal />;
 		}
 		return null;

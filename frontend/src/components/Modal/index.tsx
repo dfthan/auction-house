@@ -1,14 +1,16 @@
-import { useContext } from "react";
-import { modalContext } from "../../state";
+import { useDispatch, useSelector } from "react-redux";
+import { setModal } from "../../state";
+import { RootState } from "../../state/store";
 import AddProductForm from "../AddProductPage/AddProductForm";
 import LoginForm from "../Login/LoginForm";
 import RegisterForm from "../Register/RegisterForm";
 import "./index.css";
 
 const Modal = () => {
-	const modalCont = useContext(modalContext);
+	const dispatch = useDispatch();
+	const { modal } = useSelector((state: RootState) => state.modal);
 	const renderModal = () => {
-		switch (modalCont.modal) {
+		switch (modal) {
 			case "addProduct":
 				return <AddProductForm />;
 			case "register":
@@ -21,21 +23,11 @@ const Modal = () => {
 	};
 
 	return (
-		<div
-			className="modal"
-			onClick={() =>
-				modalCont.dispatch({ type: "SET_MODAL", payload: "closed" })
-			}
-		>
+		<div className="modal" onClick={() => dispatch(setModal("closed"))}>
 			<div className="modal-content" onClick={(e) => e.stopPropagation()}>
 				<span
 					className="close-button"
-					onClick={() =>
-						modalCont.dispatch({
-							type: "SET_MODAL",
-							payload: "closed",
-						})
-					}
+					onClick={() => dispatch(setModal("closed"))}
 				>
 					&times;
 				</span>

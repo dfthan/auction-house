@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
 import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
-import { loggedContext, modalContext } from "../../state";
+import { loggedContext, setModal } from "../../state";
 
 const LoginForm = ({}: {}) => {
-	const modalCont = useContext(modalContext);
+	const dispatch = useDispatch();
 	const context = useContext(loggedContext);
 	const formik = useFormik({
 		initialValues: {
@@ -28,8 +29,8 @@ const LoginForm = ({}: {}) => {
 				body: JSON.stringify(values),
 			});
 			if (response.status === 200) {
-				modalCont.dispatch({ type: "SET_MODAL", payload: "closed" });
 				context.dispatch({ type: "SET_LOGGED", payload: true });
+				dispatch(setModal("closed"));
 			} else {
 				alert("Login failed!");
 			}
