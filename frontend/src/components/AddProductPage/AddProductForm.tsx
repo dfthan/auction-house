@@ -14,20 +14,20 @@ const AddProductForm = () => {
 			name: Yup.string().required("Name is required"),
 			price: Yup.number()
 				.required("Price is required")
-				.positive("Price must be a positive number")
+				.positive("Price can't be negative")
 				.max(999999.99, "Price must be less than 999999.99"),
 			description: Yup.string().required("Description is required"),
-			//image: Yup.string().required("Image is required"), <-- make proper validation & add image upload
+			image: Yup.mixed().required("Image is required"),
 		}),
 		onSubmit: async (values) => {
 			console.log(values);
 			const response = await fetch(`${API_URL}/products`, {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
 				credentials: "include",
-				body: JSON.stringify(values),
+				body: values,
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
 			});
 			if (response.status === 201) {
 				window.location.reload();
@@ -77,6 +77,7 @@ const AddProductForm = () => {
 					<input
 						id="image"
 						name="image"
+						type={"file"}
 						onChange={formik.handleChange}
 						value={formik.values.image}
 					/>

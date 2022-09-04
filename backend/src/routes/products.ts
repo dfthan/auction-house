@@ -2,6 +2,8 @@ import express from "express";
 const router = express.Router();
 const Product = require("../models/Product");
 const auth = require("../util/middleware");
+const multer = require("multer");
+const upload = multer({ dest: "images/" });
 
 router.get("/", async (_req, res) => {
 	const item = await Product.query();
@@ -17,7 +19,9 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
-router.post("/", auth, async (req, res) => {
+router.post("/", auth, upload.single("image"), async (req, res) => {
+	// @ts-ignore
+	console.log("here", req.image, req.body);
 	try {
 		//console.log(res.locals.userId); <-- user id from token check
 		const item = await Product.query().insert({

@@ -20,4 +20,4 @@
 | 23.8 | 2.5   | fixed logout, landing & nav css, refactored files, made login & register modal compatible |
 | 24.8 | 1.5   | tried learning usecontext to avoid propdrilling and broke it all                          |
 | 3.9  | 1     | replaced context with redux and made it work                                              |
-| 4.9  | 1     | polished forms css, small tweaks                                                          |
+| 4.9  | 2     | polished forms css, small tweaks, started working on product image upload with multer     |
