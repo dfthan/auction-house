@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
@@ -7,11 +7,9 @@ import SingleProductPage from "./components/SingleProductPage";
 import { API_URL } from "./constants";
 import { setLogged } from "./state/loginSlice";
 import { setProductList } from "./state/productSlice";
-import { RootState } from "./state/store";
 
 const App = () => {
 	const dispatch = useDispatch();
-	const { logged, products } = useSelector((state: RootState) => state);
 	const [loading, setLoading] = useState<Boolean>(true);
 	useEffect(() => {
 		const fetchData = async () => {
@@ -20,7 +18,7 @@ const App = () => {
 			dispatch(setProductList(data));
 		};
 		fetchData();
-	}, []);
+	}, [dispatch]);
 	useEffect(() => {
 		const fetchLoggedIn = async () => {
 			const response = await fetch(`${API_URL}/status`, {
@@ -36,12 +34,11 @@ const App = () => {
 			setLoading(false);
 		};
 		fetchLoggedIn();
-	}, []);
+	}, [dispatch]);
 
 	if (loading) {
 		return <div>Loading...</div>;
 	}
-	console.log(logged, products);
 
 	return (
 		<>

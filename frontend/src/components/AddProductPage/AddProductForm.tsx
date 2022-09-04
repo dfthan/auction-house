@@ -36,52 +36,57 @@ const AddProductForm = () => {
 	});
 
 	return (
-		<form onSubmit={formik.handleSubmit}>
-			<label htmlFor="name">Name</label>
-			<input
-				id="name"
-				name="name"
-				onChange={formik.handleChange}
-				value={formik.values.name}
-				autoComplete="off"
-			/>
-			{formik.touched.name && formik.errors.name ? (
-				<div className="error">{formik.errors.name}</div>
-			) : null}
-			<label htmlFor="price">Price</label>
-			<input
-				type="number"
-				id="price"
-				name="price"
-				onChange={formik.handleChange}
-				value={formik.values.price}
-			/>
-			{formik.touched.price && formik.errors.price ? (
-				<div className="error">{formik.errors.price}</div>
-			) : null}
-			<label htmlFor="description">Description</label>
-			<input
-				id="description"
-				name="description"
-				onChange={formik.handleChange}
-				value={formik.values.description}
-				autoComplete="off"
-			/>
-			{formik.touched.description && formik.errors.description ? (
-				<div className="error">{formik.errors.description}</div>
-			) : null}
-			<label htmlFor="image">Image</label>
-			<input
-				id="image"
-				name="image"
-				onChange={formik.handleChange}
-				value={formik.values.image}
-			/>
-			{formik.touched.image && formik.errors.image ? (
-				<div className="error">{formik.errors.image}</div>
-			) : null}
-			<button type="submit">Add Product</button>
-		</form>
+		<div>
+			<h1>Add a product</h1>
+			<form onSubmit={formik.handleSubmit}>
+				<div className="form-container">
+					<label htmlFor="name">Product name</label>
+					<input
+						id="name"
+						name="name"
+						onChange={formik.handleChange}
+						value={formik.values.name}
+						autoComplete="off"
+					/>
+					{formik.touched.name && formik.errors.name ? (
+						<div className="error">{formik.errors.name}</div>
+					) : null}
+					<label htmlFor="price">Price</label>
+					<input
+						type="number"
+						id="price"
+						name="price"
+						onChange={formik.handleChange}
+						value={formik.values.price}
+					/>
+					{formik.touched.price && formik.errors.price ? (
+						<div className="error">{formik.errors.price}</div>
+					) : null}
+					<label htmlFor="description">Product description</label>
+					<input
+						id="description"
+						name="description"
+						onChange={formik.handleChange}
+						value={formik.values.description}
+						autoComplete="off"
+					/>
+					{formik.touched.description && formik.errors.description ? (
+						<div className="error">{formik.errors.description}</div>
+					) : null}
+					<label htmlFor="image">Image</label>
+					<input
+						id="image"
+						name="image"
+						onChange={formik.handleChange}
+						value={formik.values.image}
+					/>
+					{formik.touched.image && formik.errors.image ? (
+						<div className="error">{formik.errors.image}</div>
+					) : null}
+				</div>
+				<button type="submit">Add product</button>
+			</form>
+		</div>
 	);
 };
 

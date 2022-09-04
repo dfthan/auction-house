@@ -6,7 +6,7 @@ import { setModal } from "../state/modalSlice";
 import { RootState } from "../state/store";
 import "./NavbarStyles.css";
 
-const Navbar = ({}: {}) => {
+const Navbar = () => {
 	const dispatch = useDispatch();
 	const { logged } = useSelector((state: RootState) => state.logged);
 

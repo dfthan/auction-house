@@ -5,7 +5,7 @@ import { API_URL } from "../../constants";
 import { setLogged } from "../../state/loginSlice";
 import { setModal } from "../../state/modalSlice";
 
-const LoginForm = ({}: {}) => {
+const LoginForm = () => {
 	const dispatch = useDispatch();
 	const formik = useFormik({
 		initialValues: {
@@ -36,30 +36,35 @@ const LoginForm = ({}: {}) => {
 		},
 	});
 	return (
-		<form onSubmit={formik.handleSubmit}>
-			<label htmlFor="email">Email</label>
-			<input
-				id="email"
-				name="email"
-				onChange={formik.handleChange}
-				value={formik.values.email}
-			/>
-			{formik.touched.email && formik.errors.email ? (
-				<div className="error">{formik.errors.email}</div>
-			) : null}
-			<label htmlFor="password">Password</label>
-			<input
-				id="password"
-				name="password"
-				type="password"
-				onChange={formik.handleChange}
-				value={formik.values.password}
-			/>
-			{formik.touched.password && formik.errors.password ? (
-				<div className="error">{formik.errors.password}</div>
-			) : null}
-			<button type="submit">Login</button>
-		</form>
+		<div>
+			<h1>Login</h1>
+			<form onSubmit={formik.handleSubmit}>
+				<div className="form-container">
+					<label htmlFor="email">Email</label>
+					<input
+						id="email"
+						name="email"
+						onChange={formik.handleChange}
+						value={formik.values.email}
+					/>
+					{formik.touched.email && formik.errors.email ? (
+						<div className="error">{formik.errors.email}</div>
+					) : null}
+					<label htmlFor="password">Password</label>
+					<input
+						id="password"
+						name="password"
+						type="password"
+						onChange={formik.handleChange}
+						value={formik.values.password}
+					/>
+					{formik.touched.password && formik.errors.password ? (
+						<div className="error">{formik.errors.password}</div>
+					) : null}
+				</div>
+				<button type="submit">Login</button>
+			</form>
+		</div>
 	);
 };
 
