@@ -6,10 +6,11 @@ export async function up(knex: Knex): Promise<void> {
 		table.string("name").notNullable();
 		table.string("description").notNullable();
 		table.string("image").notNullable();
-		table.decimal("price").notNullable();
+		table.decimal("price").unsigned().notNullable();
 		table
 			.integer("user_id")
 			.unsigned()
+			.notNullable()
 			.references("id")
 			.inTable("users")
 			.onDelete("CASCADE");

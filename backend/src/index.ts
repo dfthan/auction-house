@@ -20,6 +20,7 @@ app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
 app.use("/logout", require("./routes/logout"));
 app.use("/status", require("./routes/userStatus"));
+app.use("/images", require("./routes/images"));
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port http://localhost:${PORT}`);

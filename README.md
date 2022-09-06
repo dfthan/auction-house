@@ -21,3 +21,5 @@
 | 24.8 | 1.5   | tried learning usecontext to avoid propdrilling and broke it all                          |
 | 3.9  | 1     | replaced context with redux and made it work                                              |
 | 4.9  | 2     | polished forms css, small tweaks, started working on product image upload with multer     |
+| 5.9  | 1.5   | reading about image handling and trying to make it work with no success                   |
+| 6.9  | 1.5   | made image route, created db table for images and got multer to work. Upload works        |

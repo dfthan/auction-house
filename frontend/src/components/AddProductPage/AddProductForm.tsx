@@ -1,8 +1,11 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
 
 const AddProductForm = () => {
+	const [file, setFile] = useState("");
+	let productdata: any;
 	const formik = useFormik({
 		initialValues: {
 			name: "",
@@ -17,17 +20,40 @@ const AddProductForm = () => {
 				.positive("Price can't be negative")
 				.max(999999.99, "Price must be less than 999999.99"),
 			description: Yup.string().required("Description is required"),
-			image: Yup.mixed().required("Image is required"),
+			//image: Yup.mixed().required("Image is required"),
 		}),
 		onSubmit: async (values) => {
+			const formData = new FormData();
+			formData.append("name", values.name);
+			formData.append("price", values.price);
+			formData.append("description", values.description);
+			// @ts-ignore
+			formData.append("image", file);
+
 			console.log(values);
+			const resp = await fetch(`${API_URL}/images`, {
+				method: "POST",
+				body: formData,
+			});
+			if (resp.status === 200) {
+				const imagedata = await resp.json();
+				console.log(imagedata);
+				productdata = {
+					name: values.name,
+					price: values.price,
+					description: values.description,
+					image: `${API_URL}/images/` + imagedata.image.filename,
+				};
+			} else {
+				return alert("Error uploading image");
+			}
 			const response = await fetch(`${API_URL}/products`, {
 				method: "POST",
 				credentials: "include",
-				body: values,
 				headers: {
-					"Content-Type": "multipart/form-data",
+					"Content-Type": "application/json",
 				},
+				body: JSON.stringify(productdata),
 			});
 			if (response.status === 201) {
 				window.location.reload();
@@ -38,7 +64,7 @@ const AddProductForm = () => {
 	return (
 		<div>
 			<h1>Add a product</h1>
-			<form onSubmit={formik.handleSubmit}>
+			<form onSubmit={formik.handleSubmit} encType="multipart/form">
 				<div className="form-container">
 					<label htmlFor="name">Product name</label>
 					<input
@@ -75,10 +101,18 @@ const AddProductForm = () => {
 					) : null}
 					<label htmlFor="image">Image</label>
 					<input
+						type="file"
 						id="image"
 						name="image"
-						type={"file"}
-						onChange={formik.handleChange}
+						onChange={(e) => {
+							// @ts-ignore
+							setFile(e.currentTarget.files[0]);
+							formik.setFieldValue(
+								"image",
+								// @ts-ignore
+								e.currentTarget.value
+							);
+						}}
 						value={formik.values.image}
 					/>
 					{formik.touched.image && formik.errors.image ? (
