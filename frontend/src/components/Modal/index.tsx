@@ -23,8 +23,11 @@ const Modal = () => {
 	};
 
 	return (
-		<div className="modal" onClick={() => dispatch(setModal("closed"))}>
-			<div className="modal-content" onClick={(e) => e.stopPropagation()}>
+		<div className="modal" onMouseDown={() => dispatch(setModal("closed"))}>
+			<div
+				className="modal-content"
+				onMouseDown={(e) => e.stopPropagation()}
+			>
 				<div>
 					<span
 						className="close-button"

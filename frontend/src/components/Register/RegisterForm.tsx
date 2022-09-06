@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
-import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
+import { setModal } from "../../state/modalSlice";
 
 const RegisterForm = () => {
-	const navigate = useNavigate();
-
+	const dispatch = useDispatch();
 	const formik = useFormik({
 		initialValues: {
 			username: "",
@@ -34,7 +34,7 @@ const RegisterForm = () => {
 				body: JSON.stringify(values),
 			});
 			if (response.status === 200) {
-				navigate("/");
+				dispatch(setModal("closed"));
 			} else {
 				alert("Registration failed!");
 			}

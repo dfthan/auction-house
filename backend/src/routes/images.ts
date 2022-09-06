@@ -4,9 +4,12 @@ const router = express.Router();
 const multer = require("multer");
 const upload = multer({ dest: "images/" });
 const Image = require("../models/Image");
+const auth = require("../util/middleware");
 
-router.post("/", upload.single("image"), async (req, res) => {
-	// @ts-ignore
+router.post("/", auth, upload.single("image"), async (req, res) => {
+	if (!req.file) {
+		return res.status(400).json({ message: "No image provided" });
+	}
 	const { filename, path, size, mimetype } = req.file;
 	try {
 		const image = await Image.query().insert({
@@ -15,9 +18,8 @@ router.post("/", upload.single("image"), async (req, res) => {
 			size,
 			mimetype,
 		});
-		console.log(image);
 
-		res.json({ success: true, image });
+		res.json({ imagefilename: image.filename });
 	} catch (err) {
 		res.status(400).json({ err });
 	}

@@ -2,10 +2,11 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
+import { productData } from "../../types";
 
 const AddProductForm = () => {
-	const [file, setFile] = useState("");
-	let productdata: any;
+	const [file, setFile] = useState({} as File);
+	let productData: productData;
 	const formik = useFormik({
 		initialValues: {
 			name: "",
@@ -18,34 +19,29 @@ const AddProductForm = () => {
 			price: Yup.number()
 				.required("Price is required")
 				.positive("Price can't be negative")
-				.max(999999.99, "Price must be less than 999999.99"),
+				.max(999999.99, "Price must be less than a million!"),
 			description: Yup.string().required("Description is required"),
-			//image: Yup.mixed().required("Image is required"),
+			image: Yup.mixed().required("Image is required"),
 		}),
 		onSubmit: async (values) => {
 			const formData = new FormData();
-			formData.append("name", values.name);
-			formData.append("price", values.price);
-			formData.append("description", values.description);
-			// @ts-ignore
 			formData.append("image", file);
 
-			console.log(values);
-			const resp = await fetch(`${API_URL}/images`, {
+			const imagefetch = await fetch(`${API_URL}/images`, {
 				method: "POST",
+				credentials: "include",
 				body: formData,
 			});
-			if (resp.status === 200) {
-				const imagedata = await resp.json();
-				console.log(imagedata);
-				productdata = {
+			if (imagefetch.status === 200) {
+				const imagedata = await imagefetch.json();
+				productData = {
 					name: values.name,
 					price: values.price,
 					description: values.description,
-					image: `${API_URL}/images/` + imagedata.image.filename,
+					image: `${API_URL}/images/` + imagedata.imagefilename,
 				};
 			} else {
-				return alert("Error uploading image");
+				return alert("Error");
 			}
 			const response = await fetch(`${API_URL}/products`, {
 				method: "POST",
@@ -53,7 +49,7 @@ const AddProductForm = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(productdata),
+				body: JSON.stringify(productData),
 			});
 			if (response.status === 201) {
 				window.location.reload();
@@ -64,7 +60,7 @@ const AddProductForm = () => {
 	return (
 		<div>
 			<h1>Add a product</h1>
-			<form onSubmit={formik.handleSubmit} encType="multipart/form">
+			<form onSubmit={formik.handleSubmit}>
 				<div className="form-container">
 					<label htmlFor="name">Product name</label>
 					<input
@@ -105,11 +101,10 @@ const AddProductForm = () => {
 						id="image"
 						name="image"
 						onChange={(e) => {
-							// @ts-ignore
-							setFile(e.currentTarget.files[0]);
+							if (e.currentTarget.files)
+								setFile(e.currentTarget.files[0]);
 							formik.setFieldValue(
 								"image",
-								// @ts-ignore
 								e.currentTarget.value
 							);
 						}}

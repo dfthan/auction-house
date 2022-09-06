@@ -11,3 +11,10 @@ export interface Product extends baseProduct {
 	created_at: string;
 	updated_at: string;
 }
+
+export interface productData {
+	name: string;
+	price: string;
+	description: string;
+	image: string;
+}
