@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import type { RootState } from "../../state/store";
 import { Product } from "../../types";
 import "./ProductCardStyles.css";
 
-const ProductCard = () => {
-	const { products } = useSelector((state: RootState) => state.products);
+const ProductCard = ({ products }: { products: Product[] }) => {
 	return (
 		<div className="productWrapper">
 			{products.map((product: Product) => (
