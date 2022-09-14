@@ -23,4 +23,5 @@
 | 4.9  | 2     | polished forms css, small tweaks, started working on product image upload with multer     |
 | 5.9  | 1.5   | reading about image handling and trying to make it work with no success                   |
 | 6.9  | 2     | made image route, created db table for images and got multer to work. Upload works        |
-| yht  | 45    |
+| 14.9 | 1     | search bar with debouncing, usecallback on search, optimized single product page          |
+| yht  | 46    |

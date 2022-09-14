@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./index.css";
 
 const Searchbar = ({
@@ -6,9 +6,14 @@ const Searchbar = ({
 }: {
 	setSearch: React.Dispatch<React.SetStateAction<string>>;
 }) => {
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSearch(e.target.value.toLowerCase());
-	};
+	const handleChange = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>) => {
+			setTimeout(() => {
+				setSearch(e.target.value.toLowerCase());
+			}, 300);
+		},
+		[]
+	);
 
 	return (
 		<div className="search-container">

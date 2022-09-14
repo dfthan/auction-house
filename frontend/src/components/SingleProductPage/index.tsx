@@ -1,20 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { API_URL } from "../../constants";
+import { useLocation } from "react-router";
 import { Product } from "../../types";
 import "./SingleProductStyles.css";
 
 const SingleProductPage = () => {
-	const { id } = useParams();
-	const [product, setProduct] = useState<Product>();
-	useEffect(() => {
-		const fetchSingleProduct = async () => {
-			const resp = await fetch(`${API_URL}/products/${id}`);
-			const data = await resp.json();
-			setProduct(data);
-		};
-		fetchSingleProduct();
-	}, [id]);
+	const location = useLocation();
+	const { product } = location.state as { product: Product };
+	console.log(product);
 
 	if (!product) {
 		return <div>Loading...</div>;
