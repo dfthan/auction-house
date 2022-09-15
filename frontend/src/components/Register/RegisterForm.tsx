@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { API_URL } from "../../constants";
 import { setModal } from "../../state/modalSlice";
+import { setNotification } from "../../state/notificationSlice";
 
 const RegisterForm = () => {
 	const dispatch = useDispatch();
@@ -35,6 +36,12 @@ const RegisterForm = () => {
 			});
 			if (response.status === 200) {
 				dispatch(setModal("closed"));
+				dispatch(
+					setNotification({
+						message: "Registered successfully",
+						color: "green",
+					})
+				);
 			} else {
 				alert("Registration failed!");
 			}

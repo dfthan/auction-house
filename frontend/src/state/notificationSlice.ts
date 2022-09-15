@@ -1,18 +1,27 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface notificationState {
-	notification: string | null;
+	notification: {
+		message: string | null;
+		color?: string | undefined;
+	};
 }
 
 const initialState: notificationState = {
-	notification: "Account created succesfully!",
+	notification: { message: null, color: undefined },
 };
 
 export const modalSlice = createSlice({
 	name: "notification",
 	initialState,
 	reducers: {
-		setNotification: (state, action: PayloadAction<string | null>) => {
+		setNotification: (
+			state,
+			action: PayloadAction<{
+				message: string | null;
+				color?: string | undefined;
+			}>
+		) => {
 			state.notification = action.payload;
 		},
 	},

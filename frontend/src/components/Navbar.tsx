@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { API_URL } from "../constants";
 import { setLogged } from "../state/loginSlice";
 import { setModal } from "../state/modalSlice";
+import { setNotification } from "../state/notificationSlice";
 import { RootState } from "../state/store";
 import "./NavbarStyles.css";
 
@@ -16,6 +17,12 @@ const Navbar = () => {
 			credentials: "include",
 		});
 		dispatch(setLogged(false));
+		dispatch(
+			setNotification({
+				message: "Logged out successfully",
+				color: "green",
+			})
+		);
 	};
 
 	if (logged) {

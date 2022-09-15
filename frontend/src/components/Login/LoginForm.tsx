@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { API_URL } from "../../constants";
 import { setLogged } from "../../state/loginSlice";
 import { setModal } from "../../state/modalSlice";
+import { setNotification } from "../../state/notificationSlice";
 
 const LoginForm = () => {
 	const dispatch = useDispatch();
@@ -30,6 +31,12 @@ const LoginForm = () => {
 			if (response.status === 200) {
 				dispatch(setLogged(true));
 				dispatch(setModal("closed"));
+				dispatch(
+					setNotification({
+						message: "Logged in successfully",
+						color: "green",
+					})
+				);
 			} else {
 				alert("Login failed!");
 			}

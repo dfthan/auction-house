@@ -8,17 +8,21 @@ const NotificationMessage = () => {
 	const { notification } = useSelector(
 		(state: RootState) => state.notification
 	);
-	if (notification === null) {
+	if (notification.message === null) {
 		return null;
 	}
 
 	return (
 		<div className="notification-container">
 			<div
+				key={notification.message}
 				className="notification"
-				onClick={() => dispatch(setNotification(null))}
+				onClick={() => dispatch(setNotification({ message: null }))}
+				style={{
+					backgroundColor: `${notification.color}`,
+				}}
 			>
-				<p>{notification}</p>
+				<p>{notification.message}</p>
 			</div>
 		</div>
 	);
