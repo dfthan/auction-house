@@ -13,6 +13,7 @@ const SingleProductPage = () => {
 
 	return (
 		<div className="product-wrapper">
+			<h1>{product.name}</h1>
 			<div className="product">
 				<div className="image-container">
 					<img src={product.image} alt={product.name} />

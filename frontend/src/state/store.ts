@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "./loginSlice";
 import modalReducer from "./modalSlice";
+import notificationReducer from "./notificationSlice";
 import productReducer from "./productSlice";
 
 export const store = configureStore({
@@ -8,6 +9,7 @@ export const store = configureStore({
 		modal: modalReducer,
 		logged: loginReducer,
 		products: productReducer,
+		notification: notificationReducer,
 	},
 });
 
