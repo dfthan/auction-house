@@ -25,4 +25,5 @@
 | 6.9  | 2     | made image route, created db table for images and got multer to work. Upload works        |
 | 14.9 | 1     | search bar with debouncing, usecallback on search, optimized single product page          |
 | 15.9 | 1.5   | product page css, made animated notification and added it to forms etc interactions       |
-| yht  | 47.5  |
+| 6.10 | 1     | fixed notification bug, added user infostamp to product and played around with design     |
+| tot  | 48.5  |

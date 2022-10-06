@@ -1,19 +1,31 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import { API_URL } from "../../constants";
 import { Product } from "../../types";
 import "./SingleProductStyles.css";
 
 const SingleProductPage = () => {
 	const location = useLocation();
 	const { product } = location.state as { product: Product };
-	console.log(product);
+	const [productSeller, setProductSeller] = useState<any>();
 
-	if (!product) {
+	useEffect(() => {
+		const fetchProductSeller = async () => {
+			const response = await fetch(
+				` ${API_URL}/users/${product.user_id}`
+			);
+			const res = await response.json();
+			setProductSeller(res);
+		};
+		fetchProductSeller();
+	}, [product.user_id]);
+
+	if (!product || !productSeller) {
 		return <div>Loading...</div>;
 	}
 
 	return (
 		<div className="product-wrapper">
-			<h1>{product.name}</h1>
 			<div className="product">
 				<div className="image-container">
 					<img src={product.image} alt={product.name} />
@@ -24,9 +36,15 @@ const SingleProductPage = () => {
 						<p>{product.price} €</p>
 						<p>{product.description}</p>
 					</div>
-					<div className="buttons">
-						<button>Buy</button>
-						<button>Bid</button>
+					<div className="bottom-content">
+						<div className="buttons">
+							<button>Buy</button>
+							<button>Bid</button>
+						</div>
+						<div className="poster-container">
+							<p>Item posted by {productSeller.username}</p>
+							<p>Member since {productSeller.created_at}</p>
+						</div>
 					</div>
 				</div>
 			</div>

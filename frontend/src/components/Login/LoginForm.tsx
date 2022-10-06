@@ -37,6 +37,11 @@ const LoginForm = () => {
 						color: "green",
 					})
 				);
+				setTimeout(() => {
+					dispatch(
+						setNotification({ message: null, color: undefined })
+					);
+				}, 1000);
 			} else {
 				alert("Login failed!");
 			}

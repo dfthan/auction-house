@@ -9,9 +9,11 @@ router.get("/", async (_req, res) => {
 
 router.get("/:id", async (req, res) => {
 	const user = await User.query().findById(req.params.id);
-	const products = await User.relatedQuery("products").for(req.params.id);
+	let { username, created_at } = user;
+	//const products = await User.relatedQuery("products").for(req.params.id);
+	created_at = created_at.toLocaleDateString();
 	if (user) {
-		res.json({ user, userProducts: products });
+		res.json({ username: username, created_at: created_at });
 	} else {
 		res.status(404).json({ message: "User not found" });
 	}
